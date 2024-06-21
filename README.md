@@ -20,12 +20,14 @@ Current works on anonymizing DNS propose `relay` in between client and recursive
 * additional network hop is required to DNS query
 * recursive resolver provide target address geographically adjacent to `relay` rather than to client
 
+## `dnscrypt-proxy`
 On the other hand, [`dnscrypt-proxy`](https://github.com/DNSCrypt/dnscrypt-proxy) propose local DNS proxy (or `proxy` in short). `proxy` achieves:
 * easy setup for client (e.g., query 127.0.0.1 without encryption)
 * ensure encryption on communication from local to recursive resolver (e.g., dnscrypt)
 * cache DNS queries locally
 * queries from clients are grouped as one
 
+## proposal
 Idea is to extend `proxy` to make groups of `proxy`. As group size increase, it is harder to distinguish client to client and `proxy` to `proxy`.
 
 Once cache miss occurs, it will be broadcasted to random number of random other `proxy` to update cache and to replicate query to recursive resolver.
